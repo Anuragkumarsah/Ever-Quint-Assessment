@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Tank Solution</title>
+    <meta
+      name="description"
+      content="Water Tank Solution — visualize and solve the trapping rain water problem."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="card" id="input-card">
+      <h1>Water Tank</h1>
+      <p class="subtitle">
+        Enter elevation values — one number or a comma-separated list.
+      </p>
+
+      <!-- Input Section (visible during input mode) -->
+      <div class="input-section" id="inputSection">
+        <div class="tags-area empty" id="tagsArea"></div>
+
+        <div class="input-row">
+          <input
+            type="text"
+            id="numberInput"
+            placeholder="eg: 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1"
+            autocomplete="off"
+          />
+          <button class="btn-add" id="addBtn">Add</button>
+        </div>
+
+        <p class="error-msg" id="errorMsg"></p>
+
+        <div class="actions">
+          <button class="btn-generate" id="generateBtn" disabled>
+            Generate
+          </button>
+          <button class="btn-clear" id="clearBtn">Clear</button>
+        </div>
+      </div>
+
+      <!-- Result Section (visible after generate) -->
+      <div class="result-section hidden" id="resultSection">
+        <div class="result-actions">
+          <button class="btn-clear" id="resultClearBtn">Clear</button>
+          <button class="btn-toggle" id="toggleBlocksBtn">
+            Hide Elevation
+          </button>
+        </div>
+      </div>
+
+      <!-- Visualisation (always inside card, shown when there are values) -->
+      <div class="visualisation" id="visualisation"></div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
