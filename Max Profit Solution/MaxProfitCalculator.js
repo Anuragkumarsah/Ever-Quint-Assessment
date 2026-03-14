@@ -1,66 +1,122 @@
-class MaxProfitCalculator {
+import { buildings } from "./constants.js";
+export default class MaxProfitCalculator {
   constructor(totalTime) {
-    this.n = totalTime;
+    this.totalTime = totalTime;
 
     this.memo = {};
 
-    this.buildings = [
-      { id: "T", time: 5, earn: 1500 },
-      { id: "P", time: 4, earn: 1000 },
-      { id: "C", time: 10, earn: 2000 },
-    ];
+    this.buildings = buildings;
   }
 
   solveRecursive(currentTime) {
     // If we cannot start any building anymore
-    if (currentTime >= this.n) {
-      return 0;
+    if (currentTime >= this.totalTime) {
+      return {
+        profit: 0,
+        solutions: [{ T: 0, P: 0, C: 0 }],
+      };
     }
 
     let maxProfit = 0;
     let bestSolutions = [];
 
-    for (let b of this.buildings) {
-      let finishTime = currentTime + b.time;
+    for (let building of this.buildings) {
+      let finishTime = currentTime + building.time;
 
       // Pick building if it can finish before n
-      if (finishTime <= this.n) {
-        let profitFromThisBuilding = b.earn * (this.n - finishTime);
+      if (finishTime <= this.totalTime) {
+        let currentProfit = building.earn * (this.totalTime - finishTime);
 
         let futureProfit = this.solveRecursive(finishTime);
 
-        maxProfit = Math.max(maxProfit, profitFromThisBuilding + futureProfit);
+        let totalProfit = currentProfit + futureProfit.profit;
+
+        if (totalProfit > maxProfit) {
+          maxProfit = totalProfit;
+          bestSolutions = [];
+
+          for (let solution of futureProfit.solutions) {
+            let newSolution = { ...solution };
+
+            newSolution[building.id]++;
+
+            bestSolutions.push(newSolution);
+          }
+        } else if (totalProfit === maxProfit) {
+          for (let solution of futureProfit.solutions) {
+            let newSolution = { ...solution };
+            newSolution[building.id]++;
+            bestSolutions.push(newSolution);
+          }
+        }
       }
     }
 
-    return maxProfit;
+    if (bestSolutions.length === 0) {
+      bestSolutions.push({ T: 0, P: 0, C: 0 });
+    }
+
+    return {
+      profit: maxProfit,
+      solutions: bestSolutions,
+    };
   }
 
   solveMemo(currentTime) {
-    if (currentTime >= this.n) {
-      return 0;
+    if (currentTime >= this.totalTime) {
+      return {
+        profit: 0,
+        solutions: [{ T: 0, P: 0, C: 0 }],
+      };
     }
 
-    if (this.memo[currentTime] !== undefined) {
+    if (this.memo[currentTime]) {
       return this.memo[currentTime];
     }
 
     let maxProfit = 0;
+    let bestSolutions = [];
 
-    for (let b of this.buildings) {
-      let finishTime = currentTime + b.time;
+    for (let building of this.buildings) {
+      let finishTime = currentTime + building.time;
 
-      if (finishTime <= this.n) {
-        let profitFromThisBuilding = b.earn * (this.n - finishTime);
+      if (finishTime <= this.totalTime) {
+        let currentProfit = building.earn * (this.totalTime - finishTime);
 
         let futureProfit = this.solveMemo(finishTime);
 
-        maxProfit = Math.max(maxProfit, profitFromThisBuilding + futureProfit);
+        let totalProfit = currentProfit + futureProfit.profit;
+
+        if (totalProfit > maxProfit) {
+          maxProfit = totalProfit;
+          bestSolutions = [];
+
+          for (let solution of futureProfit.solutions) {
+            let newSolution = { ...solution };
+
+            newSolution[building.id]++;
+
+            bestSolutions.push(newSolution);
+          }
+        } else if (totalProfit === maxProfit) {
+          for (let solution of futureProfit.solutions) {
+            let newSolution = { ...solution };
+            newSolution[building.id]++;
+            bestSolutions.push(newSolution);
+          }
+        }
       }
     }
 
-    this.memo[currentTime] = maxProfit;
+    if (bestSolutions.length === 0) {
+      bestSolutions.push({ T: 0, P: 0, C: 0 });
+    }
 
-    return maxProfit;
+    this.memo[currentTime] = {
+      profit: maxProfit,
+      solutions: bestSolutions,
+    };
+
+    return this.memo[currentTime];
   }
 }
