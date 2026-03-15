@@ -2,6 +2,8 @@ import { Task } from "../types/tasks";
 
 const STORAGE_KEY = "mini_jira_tasks";
 
+export const storageStatus = { hasError: false };
+
 /* Load the persisted tasks array from localStorage */
 
 export const loadTasksFromStorage = (): Task[] => {
@@ -12,6 +14,7 @@ export const loadTasksFromStorage = (): Task[] => {
 
     return JSON.parse(raw) as Task[];
   } catch (error) {
+    storageStatus.hasError = true;
     console.warn(
       "[taskStorage] Failed to load tasks from localStorage:",
       error,
@@ -26,6 +29,7 @@ export const saveTasksToStorage = (tasks: Task[]): void => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   } catch (error) {
+    storageStatus.hasError = true;
     console.warn("[taskStorage] Failed to save tasks to localStorage:", error);
   }
 };

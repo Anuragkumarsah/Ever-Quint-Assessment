@@ -1,7 +1,21 @@
+import { useEffect } from "react";
 import { Board } from "./features/board";
+import { storageStatus } from "./storage/taskStorage";
+import { useToast } from "./components/ui/Toast/ToastProvider";
 import "./App.css";
 
 const App = () => {
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    if (storageStatus.hasError) {
+      addToast(
+        "error",
+        "Unable to access local storage. Tasks may not persist.",
+      );
+    }
+  }, []);
+
   return (
     <div className="app">
       <header className="app__header">

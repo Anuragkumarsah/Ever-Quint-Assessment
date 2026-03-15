@@ -1,0 +1,101 @@
+.multi-select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  width: 100%;
+}
+
+.multi-select__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.multi-select__control {
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.multi-select__control:focus,
+.multi-select__control--open {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.multi-select__value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multi-select__chevron {
+  color: var(--color-text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.multi-select__control--open .multi-select__chevron {
+  transform: rotate(180deg);
+}
+
+.multi-select__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 50;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: var(--space-1);
+}
+
+.multi-select__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.multi-select__option:hover {
+  background-color: var(--color-bg);
+}
+
+.multi-select__checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: all var(--transition-fast);
+}
+
+.multi-select__checkbox--checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}

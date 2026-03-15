@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import taskReducer from "./taskSlice";
+import filterReducer from "./filterSlice";
 import { saveTasksToStorage } from "../storage/taskStorage";
 
 /*-----Store-----*/
@@ -7,6 +8,7 @@ import { saveTasksToStorage } from "../storage/taskStorage";
 const store = configureStore({
   reducer: {
     tasks: taskReducer,
+    filters: filterReducer,
   },
 });
 
