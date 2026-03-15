@@ -17,7 +17,7 @@
   box-shadow: var(--shadow-lg);
   width: 90%;
   max-width: 500px;
-  max-height: 85vh;
+  max-height: 90vh;
   overflow-y: auto;
   animation: modal-slide-in var(--transition-normal);
 }

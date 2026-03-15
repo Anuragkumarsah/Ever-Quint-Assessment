@@ -8,6 +8,6 @@ export type Task = {
   priority: Priority;
   assignee: string;
   tags: Array<string>;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
