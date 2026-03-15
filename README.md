@@ -4,22 +4,22 @@ This repository contains the solutions for the Ever Quint Frontend Engineer asse
 
 ## Projects Overview
 
-### 1. [Mini Jira](./Mini%20Jira/README.md)
+### 1. [Mini Jira](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Mini%20Jira)
 A frontend implementation of a team workflow board (Mini Jira), utilizing React and Redux for state management, with a reusable UI component library.
-- **Path:** [`./Mini Jira`](./Mini%20Jira)
-- **Documentation:** [README.md](./Mini%20Jira/README.md)
-- **Architecture:** [ARCHITECTURE.md](./Mini%20Jira/ARCHITECTURE.md)
+- **Path:** [`./Mini Jira`](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Mini%20Jira)
+- **Documentation:** [README.md](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/blob/master/Mini%20Jira/README.md)
+- **Architecture:** [ARCHITECTURE.md](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/blob/master/Mini%20Jira/ARCHITECTURE.md)
 
-### 2. [Water Tank Solution](./Water%20Tank%20Solution/README.md)
+### 2. [Water Tank Solution](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Water%20Tank%20Solution)
 An algorithmic and frontend solution to calculate and visualize the amount of water trapped between elevation blocks in 2D.
-- **Path:** [`./Water Tank Solution`](./Water%20Tank%20Solution)
-- **Documentation:** [README.md](./Water%20Tank%20Solution/README.md)
-- **Architecture:** [ARCHITECTURE.md](./Water%20Tank%20Solution/ARCHITECTURE.md)
+- **Path:** [`./Water Tank Solution`](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Water%20Tank%20Solution)
+- **Documentation:** [README.md](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/blob/master/Water%20Tank%20Solution/README.md)
+- **Architecture:** [ARCHITECTURE.md](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/blob/master/Water%20Tank%20Solution/ARCHITECTURE.md)
 
-### 3. [Max Profit Solution](./Max%20Profit%20Solution/README.md)
+### 3. [Max Profit Solution](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Max%20Profit%20Solution)
 An algorithmic solution to determine the maximum return on investment based on property development (Theatres, Pubs, and Commercial Parks) within a given time frame.
-- **Path:** [`./Max Profit Solution`](./Max%20Profit%20Solution)
-- **Documentation:** [README.md](./Max%20Profit%20Solution/README.md)
+- **Path:** [`./Max Profit Solution`](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/tree/master/Max%20Profit%20Solution)
+- **Documentation:** [README.md](https://github.com/Anuragkumarsah/Ever-Quint-Assessment/blob/master/Max%20Profit%20Solution/README.md)
 
 ## Problem Statements
 
