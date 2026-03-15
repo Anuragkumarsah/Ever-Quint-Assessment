@@ -1,0 +1,76 @@
+/* --------Button styles-------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-family);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+  line-height: 1;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --------variants-------- */
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.button--secondary {
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--color-secondary);
+  color: var(--color-text-inverse);
+}
+
+.button--destructive {
+  background: var(--color-destructive);
+  color: var(--color-text-inverse);
+}
+
+.button--destructive:hover:not(:disabled) {
+  background: var(--color-destructive-hover);
+}
+
+/* --------sizes-------- */
+
+.button--sm {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.button--md {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-md);
+}
+
+.button--lg {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-lg);
+}
