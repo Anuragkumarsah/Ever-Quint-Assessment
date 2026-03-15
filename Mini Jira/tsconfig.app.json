@@ -5,7 +5,12 @@
     "useDefineForClassFields": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
+    "types": [
+      "vite/client",
+      "node",
+      "jest",
+      "@testing-library/jest-dom"
+    ],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -18,11 +23,12 @@
 
     /* Linting */
     "strict": true,
+    "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src/**/*", "jest.config.ts", "src/setupTests.ts"]
 }

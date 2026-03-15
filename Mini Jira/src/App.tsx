@@ -11,7 +11,14 @@ const App = () => {
     if (storageStatus.hasError) {
       addToast(
         "error",
-        "Unable to access local storage. Tasks may not persist.",
+        "Unable to access local storage or data corrupted. Tasks may not persist.",
+      );
+    }
+    
+    if (storageStatus.migrated) {
+      addToast(
+        "info",
+        "Stored data was upgraded to the latest version.",
       );
     }
   }, []);

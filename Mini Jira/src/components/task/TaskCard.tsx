@@ -1,3 +1,4 @@
+import React from "react";
 import { Task } from "../../types/tasks";
 import { StatusTypes } from "../../types/status";
 import Card from "../ui/Card/Card";
@@ -34,7 +35,7 @@ interface TaskCardProps {
   onStatusChange?: (taskId: number, newStatus: StatusTypes) => void;
 }
 
-const TaskCard = ({ task, onEdit, onStatusChange }: TaskCardProps) => {
+const TaskCard = React.memo(({ task, onEdit, onStatusChange }: TaskCardProps) => {
   return (
     <Card className="task-card">
       <div className="task-card__header">
@@ -96,6 +97,6 @@ const TaskCard = ({ task, onEdit, onStatusChange }: TaskCardProps) => {
       )}
     </Card>
   );
-};
+});
 
 export default TaskCard;

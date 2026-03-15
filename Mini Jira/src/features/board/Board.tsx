@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Task } from "../../types/tasks";
@@ -53,26 +53,31 @@ const Board = () => {
     setSearchParams(newParams, { replace: true });
   }, [filters, setSearchParams]);
 
-  const filteredTasks = getFilteredAndSortedTasks(tasks, filters);
+  const filteredTasks = useMemo(() => {
+    return getFilteredAndSortedTasks(tasks, filters);
+  }, [tasks, filters]);
 
   const handleCreateTask = () => {
     setEditingTask(undefined);
     setIsModalOpen(true);
   };
 
-  const handleEditTask = (task: Task) => {
+  const handleEditTask = useCallback((task: Task) => {
     setEditingTask(task);
     setIsModalOpen(true);
-  };
+  }, []);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingTask(undefined);
   };
 
-  const handleStatusChange = (taskId: number, newStatus: StatusTypes) => {
-    dispatch(updateTaskStatus({ id: taskId, status: newStatus }));
-  };
+  const handleStatusChange = useCallback(
+    (taskId: number, newStatus: StatusTypes) => {
+      dispatch(updateTaskStatus({ id: taskId, status: newStatus }));
+    },
+    [dispatch],
+  );
 
   return (
     <div className="board-container">
@@ -95,12 +100,36 @@ const Board = () => {
               aria-label={isFilterOpen ? "Close Filters" : "Open Filters"}
             >
               {isFilterOpen ? (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 6L6 18M6 6L18 18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 3H2L10 12.46V19L14 21V12.46L22 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22 3H2L10 12.46V19L14 21V12.46L22 3Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               )}
             </Button>
