@@ -1,4 +1,4 @@
-import { StatusTypes, Priority } from "./Status";
+import { StatusTypes, Priority } from "./status";
 
 export type Task = {
   id: number;
