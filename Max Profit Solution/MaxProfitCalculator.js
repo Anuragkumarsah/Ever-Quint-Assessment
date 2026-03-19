@@ -27,6 +27,9 @@ export default class MaxProfitCalculator {
       if (finishTime <= this.totalTime) {
         let currentProfit = building.earn * (this.totalTime - finishTime);
 
+        // Filtering out non-impactful entries (zero earnings)
+        if (currentProfit === 0) continue;
+
         let futureProfit = this.solveRecursive(finishTime);
 
         let totalProfit = currentProfit + futureProfit.profit;
@@ -42,7 +45,7 @@ export default class MaxProfitCalculator {
 
             bestSolutions.push(newSolution);
           }
-        } else if (totalProfit === maxProfit) {
+        } else if (totalProfit === maxProfit && totalProfit > 0) {
           for (let solution of futureProfit.solutions) {
             let newSolution = { ...solution };
             newSolution[building.id]++;
@@ -52,13 +55,25 @@ export default class MaxProfitCalculator {
       }
     }
 
+    // in case if no profitable buildings could be built
     if (bestSolutions.length === 0) {
       bestSolutions.push({ T: 0, P: 0, C: 0 });
     }
 
+    // Filter out redundant combinations
+    const seen = new Set();
+    const finalSolutions = bestSolutions.filter((solution) => {
+      const key = `T${solution.T}P${solution.P}C${solution.C}`;
+      if (seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
+
     return {
       profit: maxProfit,
-      solutions: bestSolutions,
+      solutions: finalSolutions,
     };
   }
 
@@ -83,6 +98,9 @@ export default class MaxProfitCalculator {
       if (finishTime <= this.totalTime) {
         let currentProfit = building.earn * (this.totalTime - finishTime);
 
+        // Filtering out non-impactful entries (zero earnings)
+        if (currentProfit === 0) continue;
+
         let futureProfit = this.solveMemo(finishTime);
 
         let totalProfit = currentProfit + futureProfit.profit;
@@ -98,7 +116,7 @@ export default class MaxProfitCalculator {
 
             bestSolutions.push(newSolution);
           }
-        } else if (totalProfit === maxProfit) {
+        } else if (totalProfit === maxProfit && totalProfit > 0) {
           for (let solution of futureProfit.solutions) {
             let newSolution = { ...solution };
             newSolution[building.id]++;
@@ -108,13 +126,25 @@ export default class MaxProfitCalculator {
       }
     }
 
+    // same in case if no profitable buildings could be built
     if (bestSolutions.length === 0) {
       bestSolutions.push({ T: 0, P: 0, C: 0 });
     }
 
+    // Filtering out redundant combinations
+    const seen = new Set();
+    const finalSolutions = bestSolutions.filter((solution) => {
+      const key = `T${solution.T}P${solution.P}C${solution.C}`;
+      if (seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
+
     this.memo[currentTime] = {
       profit: maxProfit,
-      solutions: bestSolutions,
+      solutions: finalSolutions,
     };
 
     return this.memo[currentTime];
